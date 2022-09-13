@@ -24,7 +24,7 @@ cap = cv2.VideoCapture("assets/emotion_sample6.mp4")
 while True:
     # Find haar cascade to draw bounding box around face
     ret, frame = cap.read()
-    frame = cv2.resize(frame, (1280, 720))
+    frame = cv2.resize(frame, (1200, 600))
     if not ret:
         break
     face_detector = cv2.CascadeClassifier('haarcascades/haarcascade_frontalface_default.xml')
@@ -45,6 +45,7 @@ while True:
         cv2.putText(frame, emotion_dict[maxindex], (x+5, y-20), cv2.FONT_HERSHEY_SIMPLEX, 1, (255, 0, 0), 2, cv2.LINE_AA)
 
     cv2.imshow('Emotion Detection', frame)
+    
     if cv2.waitKey(1) & 0xFF == ord('q'):
         break
 

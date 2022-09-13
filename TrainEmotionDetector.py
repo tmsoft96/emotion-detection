@@ -10,7 +10,7 @@ from keras.preprocessing.image import ImageDataGenerator
 train_data_gen = ImageDataGenerator(rescale=1./255)
 validation_data_gen = ImageDataGenerator(rescale=1./255)
 
-# Preprocess all test images
+# Preprocess all train images
 train_generator = train_data_gen.flow_from_directory(
         'data/train',
         target_size=(48, 48),
@@ -18,7 +18,7 @@ train_generator = train_data_gen.flow_from_directory(
         color_mode="grayscale",
         class_mode='categorical')
 
-# Preprocess all train images
+# Preprocess all test images
 validation_generator = validation_data_gen.flow_from_directory(
         'data/test',
         target_size=(48, 48),
@@ -57,7 +57,7 @@ emotion_model_info = emotion_model.fit_generator(
         validation_data=validation_generator,
         validation_steps=7178 // 64)
 
-# save model structure in jason file
+# save model structure in json file
 model_json = emotion_model.to_json()
 with open("emotion_model.json", "w") as json_file:
     json_file.write(model_json)
